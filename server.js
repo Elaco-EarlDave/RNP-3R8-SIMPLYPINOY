@@ -3,14 +3,10 @@ const cors = require("cors");
 const dotenv = require("dotenv");
 const colors = require("colors");
 const morgan = require("morgan");
-// const { connect } = require("mongoose");
 const connectDB = require("./config/db");
-
-
 
 // DOT ENV
 dotenv.config();
-
 
 //MONGODB CONNECTION
 connectDB();
@@ -27,14 +23,12 @@ app.use(morgan('dev'));
 app.use('/api/v1/auth', require("./routes/userRoutes"))
 app.use("/api/v1/post", require("./routes/postRoutes"));
 
-
 app.get('/', (req,res) => {
     res.status(200).json({
         success:true,
         message: "Hello, you made it",
     });
 });
-
 //PORT
 const PORT = process.env.PORT || 8080
 
@@ -42,4 +36,3 @@ const PORT = process.env.PORT || 8080
 app.listen(PORT, () => {
     console.log(`Server Running ${PORT}`.bgGreen.white)
 });
-
